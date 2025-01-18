@@ -10,6 +10,36 @@
         <TabControl x:Name="MainTabControl">
             <TabItem Header="新MIDP">
                 <Grid x:Name="NewMidpContent">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <!-- First Row: Two Buttons with Larger Font -->
+                    <Button Grid.Row="0" Grid.Column="0" Margin="5" Content="对比PDF和DWG" Name="BtnComparePDFDWG_New" FontSize="16" FontWeight="Bold" Height="40" Click="BtnComparePDFDWG_Click" />
+                    <Button Grid.Row="0" Grid.Column="1" Margin="5" Content="生成标准化表格" Name="BtnGenerateTable_New" FontSize="16" FontWeight="Bold" Height="40" Click="BtnGenerateTable_Click"/>
+
+                    <!-- Second Row: PDF Path -->
+                    <TextBox Grid.Row="1" Grid.Column="0" Margin="5,5,150,5" IsReadOnly="True" Name="TxtDWGPath_New" Grid.ColumnSpan="2" />
+                    <Button Grid.Row="1" Grid.Column="1" Margin="145,5,5,5" Content="选择DWG路径" Name="BtnSelectDWGPath_New" Click="BtnSelectDWGPath_Click"/>
+
+                    <!-- Third Row: DWG Path -->
+                    <TextBox Grid.Row="2" Grid.Column="0" Margin="5,5,150,5" IsReadOnly="True" Name="TxtPDFPath_New" Grid.ColumnSpan="2" />
+                    <Button Grid.Row="2" Grid.Column="1" Margin="145,5,5,5" Content="选择PDF路径" Name="BtnSelectPDFPath_New" Click="BtnSelectPDFPath_Click"/>
+
+
+
                 </Grid>
             </TabItem>
             <TabItem Header="旧MIDP">
