@@ -5,64 +5,75 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FormatExcel"
         mc:Ignorable="d"
-        Title="标准化表格" Height="400" Width="600">
+        Title="标准化表格" Height="450" Width="600">
     <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+        <TabControl x:Name="MainTabControl">
+            <TabItem Header="新MIDP">
+                <Grid x:Name="NewMidpContent">
+                </Grid>
+            </TabItem>
+            <TabItem Header="旧MIDP">
+                <Grid x:Name="OldMidpContent">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-        <!-- First Row: Two Buttons with Larger Font -->
-        <Button Grid.Row="0" Grid.Column="0" Margin="5" Content="对比PDF和DWG" Name="BtnComparePDFDWG" FontSize="16" FontWeight="Bold" Height="40" Click="BtnComparePDFDWG_Click" />
-        <Button Grid.Row="0" Grid.Column="1" Margin="5" Content="生成标准化表格" Name="BtnGenerateTable" FontSize="16" FontWeight="Bold" Height="40" Click="BtnGenerateTable_Click"/>
+                    <!-- First Row: Two Buttons with Larger Font -->
+                    <Button Grid.Row="0" Grid.Column="0" Margin="5" Content="对比PDF和DWG" Name="BtnComparePDFDWG" FontSize="16" FontWeight="Bold" Height="40" Click="BtnComparePDFDWG_Click" />
+                    <Button Grid.Row="0" Grid.Column="1" Margin="5" Content="生成标准化表格" Name="BtnGenerateTable" FontSize="16" FontWeight="Bold" Height="40" Click="BtnGenerateTable_Click"/>
 
-        <!-- Second Row: PDF Path -->    
-        <TextBox Grid.Row="1" Grid.Column="0" Margin="5,5,150,5" IsReadOnly="True" Name="TxtDWGPath" Grid.ColumnSpan="2" />
-        <Button Grid.Row="1" Grid.Column="1" Margin="145,5,5,5" Content="选择DWG路径" Name="BtnSelectDWGPath" Click="BtnSelectDWGPath_Click"/>
-        
-        <!-- Third Row: DWG Path -->
-        <TextBox Grid.Row="2" Grid.Column="0" Margin="5,5,150,5" IsReadOnly="True" Name="TxtPDFPath" Grid.ColumnSpan="2" />
-        <Button Grid.Row="2" Grid.Column="1" Margin="145,5,5,5" Content="选择PDF路径" Name="BtnSelectPDFPath" Click="BtnSelectPDFPath_Click"/>
+                    <!-- Second Row: PDF Path -->
+                    <TextBox Grid.Row="1" Grid.Column="0" Margin="5,5,150,5" IsReadOnly="True" Name="TxtDWGPath" Grid.ColumnSpan="2" />
+                    <Button Grid.Row="1" Grid.Column="1" Margin="145,5,5,5" Content="选择DWG路径" Name="BtnSelectDWGPath" Click="BtnSelectDWGPath_Click"/>
 
-        <!-- Fourth Row: Optional Text -->
-        <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" Text="文件命名示例：00103_CHE_VL1_L01_SHD_WL_002108_R02_V1-IP108" TextAlignment="Center" />
-        
-        <!-- Fourth Row: Optional Text -->
-        <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" Text="[ 以下内容可缺省 ]" FontWeight="Bold" FontSize="17" TextAlignment="Center" />
+                    <!-- Third Row: DWG Path -->
+                    <TextBox Grid.Row="2" Grid.Column="0" Margin="5,5,150,5" IsReadOnly="True" Name="TxtPDFPath" Grid.ColumnSpan="2" />
+                    <Button Grid.Row="2" Grid.Column="1" Margin="145,5,5,5" Content="选择PDF路径" Name="BtnSelectPDFPath" Click="BtnSelectPDFPath_Click"/>
 
-        <!-- Fifth Row: Design Stage -->
-        <Label Grid.Row="5" Grid.Column="0" Margin="5" Content="Design Stage" HorizontalAlignment="Right" />
-        <TextBox Grid.Row="5" Grid.Column="1" Margin="5" Name="TxtDesignStage" />
+                    <!-- Fourth Row: Optional Text -->
+                    <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" Text="文件命名示例：00103_CHE_VL1_L01_SHD_WL_002108_R02_V1-IP108" TextAlignment="Center" />
 
-        <!-- Sixth Row: Category -->
-        <Label Grid.Row="6" Grid.Column="0" Margin="5" Content="Category" HorizontalAlignment="Right" />
-        <TextBox Grid.Row="6" Grid.Column="1" Margin="5" Name="TxtCategory" />
+                    <!-- Fourth Row: Optional Text -->
+                    <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" Text="[ 以下内容可缺省 ]" FontWeight="Bold" FontSize="17" TextAlignment="Center" />
 
-        <!-- Seventh Row: To Company -->
-        <Label Grid.Row="7" Grid.Column="0" Margin="5" Content="To Company" HorizontalAlignment="Right" />
-        <TextBox Grid.Row="7" Grid.Column="1" Margin="5" Name="TxtToCompany" />
+                    <!-- Fifth Row: Design Stage -->
+                    <Label Grid.Row="5" Grid.Column="0" Margin="5" Content="Design Stage" HorizontalAlignment="Right" />
+                    <TextBox Grid.Row="5" Grid.Column="1" Margin="5" Name="TxtDesignStage" />
 
-        <!-- Eighth Row: Zones -->
-        <Label Grid.Row="8" Grid.Column="0" Margin="5" Content="Zones" HorizontalAlignment="Right" />
-        <TextBox Grid.Row="8" Grid.Column="1" Margin="5" Name="TxtZones" />
+                    <!-- Sixth Row: Category -->
+                    <Label Grid.Row="6" Grid.Column="0" Margin="5" Content="Category" HorizontalAlignment="Right" />
+                    <TextBox Grid.Row="6" Grid.Column="1" Margin="5" Name="TxtCategory" />
 
-        <!-- Footer: Author Information -->
-        <TextBlock Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" HorizontalAlignment="Right" TextAlignment="Right">
-            <TextBlock Text="Merlin Hu, merlin.dctc@gmail.com" />
-            <LineBreak />
-            <TextBlock Text="CSADI | DCTC Dep." />
-        </TextBlock>
+                    <!-- Seventh Row: To Company -->
+                    <Label Grid.Row="7" Grid.Column="0" Margin="5" Content="To Company" HorizontalAlignment="Right" />
+                    <TextBox Grid.Row="7" Grid.Column="1" Margin="5" Name="TxtToCompany" />
+
+                    <!-- Eighth Row: Zones -->
+                    <Label Grid.Row="8" Grid.Column="0" Margin="5" Content="Zones" HorizontalAlignment="Right" />
+                    <TextBox Grid.Row="8" Grid.Column="1" Margin="5" Name="TxtZones" />
+
+                    <!-- Footer: Author Information -->
+                    <TextBlock Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" HorizontalAlignment="Right" TextAlignment="Right">
+                    <TextBlock Text="Merlin Hu, merlin.dctc@gmail.com" />
+                    <LineBreak />
+                    <TextBlock Text="CSADI | DCTC Dep." />
+                    </TextBlock>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
     </Grid>
 </Window>
