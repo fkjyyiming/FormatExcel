@@ -50,7 +50,7 @@ namespace FormatExcel
 
 
         // 按钮2: 生成标准化表格
-        private void BtnGenerateTable_Click(object sender, RoutedEventArgs e)
+        private void BtnGenerateOLDTable_Click(object sender, RoutedEventArgs e)
         {
             // 1. 检查PDF路径是否选择
             if (string.IsNullOrEmpty(TxtPDFPath.Text))
