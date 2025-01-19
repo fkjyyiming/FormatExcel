@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="标准化表格" Height="450" Width="600">
     <Grid Margin="10">
+        
+        
+        
+        
         <TabControl x:Name="MainTabControl">
             <TabItem Header="新MIDP">
                 <Grid x:Name="NewMidpContent">
@@ -26,6 +30,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
+                    <!--注意名构件的名字不能重复，方法的名字是可以重复的，但是对于双向绑定很不利-->
                     <!-- First Row: Two Buttons with Larger Font -->
                     <Button Grid.Row="0" Grid.Column="0" Margin="5" Content="对比PDF和DWG" Name="BtnComparePDFDWG_New" FontSize="16" FontWeight="Bold" Height="40" Click="BtnComparePDFDWG_Click" />
                     <Button Grid.Row="0" Grid.Column="1" Margin="5" Content="生成标准化表格" Name="BtnGenerateTable_New" FontSize="16" FontWeight="Bold" Height="40" Click="BtnGenerateTable_Click"/>
