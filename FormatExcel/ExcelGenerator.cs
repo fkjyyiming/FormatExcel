@@ -133,25 +133,29 @@ namespace FormatExcel
                 switch (lastPart)
                 {
                     case "C10":
-                        return "Villa C10";
+                        return "Villa Type C10";
                     case "VL1":
-                        return "Villa 1";
+                        return "Villa Type 01";
                     case "VL2":
-                        return "Villa 2";
+                        return "Villa Type 02";
                     case "VL3":
-                        return "Villa 3";
+                        return "Villa Type 03";
                     case "VL4":
-                        return "Villa 4";
+                        return "Villa Type 04";
                     case "DP1":
-                        return "Duplex 1";
+                        return "Duplex Type 01";
                     case "DP2":
-                        return "Duplex 2";
+                        return "Duplex Type 02";
+                    case "DP3":
+                        return "Duplex Type 03";
                     case "DP4":
-                        return "Duplex 4";
+                        return "Duplex Type 04";
                     case "TH1":
-                        return "Town House 1";
+                        return "Town House 01";
                     case "TH2":
-                        return "Town House 2";
+                        return "Town House 02";
+                    case "TH3":
+                        return "Town House 03";
                     case "D01":
                         return "Cluster Type1(DP1-DP1)";
                     case "D02":
