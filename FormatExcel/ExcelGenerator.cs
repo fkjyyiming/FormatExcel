@@ -24,6 +24,7 @@ namespace FormatExcel
             try
             {
                 using (FileStream templateFile = new FileStream(templatePath, FileMode.Open, FileAccess.Read))
+                //using 使用后会自动释放资源，不需要手动关闭文件流
                 {
                     if (templatePath.EndsWith(".xls", StringComparison.OrdinalIgnoreCase))
                     {
@@ -128,11 +129,13 @@ namespace FormatExcel
             if (parts.Length > 0)
             {
                 //取名称的最后一部分
+                //string part = parts[parts.Length-1] ;
                 string part = parts.Last() ;
                 //将最后一部分用-进行分隔
-                string[] lastPart = fileNameWithoutExtension.Split('-');
+                string[] lastPart = part.Split('-');
                 //再取其第一部分，如VL1 TV1...
-                string unit = parts.First();
+                //string unit = lastPart[0];
+                string unit = lastPart.FirstOrDefault();
 
                 switch (unit)
                 {

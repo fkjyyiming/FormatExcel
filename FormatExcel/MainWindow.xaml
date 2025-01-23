@@ -29,11 +29,11 @@
         </Grid.ColumnDefinitions>
 
         <!-- First Row: DWG Path -->
-        <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="5,5,5,5" IsReadOnly="True" Name="TxtDWGPath"  />
+        <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="5,5,5,5" IsReadOnly="False" Name="TxtDWGPath"  />
         <Button Grid.Row="0" Grid.Column="4"  Grid.ColumnSpan="1" Margin="5,5,5,5" Content="DWG文件夹(Select Folder)" Name="BtnSelectDWGPath" Click="BtnSelectDWGPath_Click"/>
 
         <!-- Second Row: PDF Path -->
-        <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="5,5,5,5" IsReadOnly="True" Name="TxtPDFPath"  />
+        <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="5,5,5,5" IsReadOnly="False" Name="TxtPDFPath"  />
         <Button Grid.Row="1" Grid.Column="4" Margin="5,5,5,5" Content="PDF文件夹(Select Folder)" Name="BtnSelectPDFPath" Click="BtnSelectPDFPath_Click"/>
 
         <!-- Third Row: Four Buttons with Larger Font -->

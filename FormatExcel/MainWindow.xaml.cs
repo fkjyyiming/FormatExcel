@@ -129,7 +129,7 @@ namespace FormatExcel
         private void CheckDWGFormat_Click(object sender, RoutedEventArgs e)
         {
             // 1. 检查路径是否为空
-            if (string.IsNullOrEmpty(TxtPDFPath.Text))
+            if (string.IsNullOrEmpty(TxtDWGPath.Text))
             {
                 System.Windows.MessageBox.Show("请先选择DWG文件夹\nPlease select the DWG folder first.", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -138,7 +138,7 @@ namespace FormatExcel
             dwgFolderPath = TxtDWGPath.Text;
 
             // 调用 FileComparer 并获取结果
-            var (issueCount, issues) = CheckFilesFormat.CheckFiles(dwgFolderPath);
+            var (issueCount, issues) = CheckFilesFormat.CheckFiles(dwgFolderPath,".dwg");
 
             // 创建并显示结果窗口
             FormatCheckResult resultWindow = new FormatCheckResult();
