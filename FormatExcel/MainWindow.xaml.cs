@@ -18,7 +18,12 @@ namespace FormatExcel
         {
             InitializeComponent();
 
-            // 设置默认值
+            // 设置左侧默认值
+            TxtSheetSize.Text = "A1";
+            TxtScale.Text = "1:50";
+            TxtDrawingType.Text = "General";
+            TxtDiscipline2.Text = "PRECAST";
+            // 设置右侧默认值
             TxtDesignStage.Text = "08 - PDD - Product Detailed Design";
             TxtCategory.Text = "SHD - Shop Drawings";
             TxtToCompany.Text = "East Consulting Engineering Company";

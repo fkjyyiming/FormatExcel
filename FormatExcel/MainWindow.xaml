@@ -48,19 +48,35 @@
         <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" Text="[ NEW MIDP INFORMATION ]" FontWeight="Bold" FontSize="17" TextAlignment="Center" />
         <TextBlock Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="5" Text="[ OLD MIDP INFORMATION]" FontWeight="Bold" FontSize="17" TextAlignment="Center" />
 
-        <!-- Fifth Row: Design Stage -->
+        <!-- Fifth Row: SheetSize / Design Stage -->
+        <!--左侧-->
+        <Label Grid.Row="5" Grid.Column="0" Margin="5" Content="SheetSize" HorizontalAlignment="Right" />
+        <TextBox Grid.Row="5" Grid.Column="1" Margin="5" Name="TxtSheetSize" />
+        <!--右侧-->
         <Label Grid.Row="5" Grid.Column="2" Margin="5" Content="Design Stage" HorizontalAlignment="Right" />
         <TextBox Grid.Row="5" Grid.Column="3" Margin="5" Name="TxtDesignStage" />
 
-        <!-- Sixth Row: Category -->
+        <!-- Sixth Row: Scale / Category -->        
+        <!--左侧-->
+        <Label Grid.Row="6" Grid.Column="0" Margin="5" Content="Scale" HorizontalAlignment="Right" />
+        <TextBox Grid.Row="6" Grid.Column="1" Margin="5" Name="TxtScale" />        
+        <!--右侧-->
         <Label Grid.Row="6" Grid.Column="2" Margin="5" Content="Category" HorizontalAlignment="Right" />
         <TextBox Grid.Row="6" Grid.Column="3" Margin="5" Name="TxtCategory" />
 
-        <!-- Seventh Row: To Company -->
+        <!-- Seventh Row: Drawing Type / To Company -->
+        <!--左侧-->
+        <Label Grid.Row="7" Grid.Column="0" Margin="5" Content="Drawing Type" HorizontalAlignment="Right" />
+        <TextBox Grid.Row="7" Grid.Column="1" Margin="5" Name="TxtDrawingType" />
+        <!--右侧-->
         <Label Grid.Row="7" Grid.Column="2" Margin="5" Content="To Company" HorizontalAlignment="Right" />
         <TextBox Grid.Row="7" Grid.Column="3" Margin="5" Name="TxtToCompany" />
 
         <!-- Eighth Row: Zones -->
+        <!--左侧-->
+        <Label Grid.Row="8" Grid.Column="0" Margin="5" Content="Discipline2" HorizontalAlignment="Right" />
+        <TextBox Grid.Row="8" Grid.Column="1" Margin="5" Name="TxtDiscipline2" />
+        <!--右侧-->
         <Label Grid.Row="8" Grid.Column="2" Margin="5" Content="Zones" HorizontalAlignment="Right" />
         <TextBox Grid.Row="8" Grid.Column="3" Margin="5" Name="TxtZones" />
 
