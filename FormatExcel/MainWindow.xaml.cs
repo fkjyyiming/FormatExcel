@@ -125,5 +125,20 @@ namespace FormatExcel
                 TxtDWGPath.Text = dwgFolderPath; // 显示在 TextBox 中
             }
         }
+
+        private void CheckDWGFormat_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CheckPDFFormat_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnGenerateNEWTable_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
