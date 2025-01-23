@@ -168,6 +168,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FormatCheckResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -176,11 +180,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CheckFilesFormat.cs" />
     <Compile Include="CompareResultWindow.xaml.cs">
       <DependentUpon>CompareResultWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ExcelGenerator.cs" />
     <Compile Include="FileComparer.cs" />
+    <Compile Include="FormatCheckResult.xaml.cs">
+      <DependentUpon>FormatCheckResult.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

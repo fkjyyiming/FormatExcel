@@ -1,0 +1,28 @@
+﻿<Window x:Class="FormatExcel.FormatCheckResult"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FormatExcel"
+        mc:Ignorable="d"
+        Title="格式检查结果 Format Check Result" Height="450" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+
+
+        <TextBlock x:Name="ResultTextBlock" Grid.Row="0" Margin="10" Text="正在检查 Checking now......" />
+
+        <ListView x:Name="IssuesListView" Grid.Row="1" Margin="10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn  Header="文件名称(File name)" Width="300" DisplayMemberBinding="{Binding FileName}" />
+                    <GridViewColumn Header="问题类型(Issue type)" Width="250" DisplayMemberBinding="{Binding IssueType}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
