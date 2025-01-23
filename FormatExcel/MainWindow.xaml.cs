@@ -38,7 +38,7 @@ namespace FormatExcel
             // 1. 检查路径是否为空
             if (string.IsNullOrEmpty(TxtPDFPath.Text) || string.IsNullOrEmpty(TxtDWGPath.Text))
             {
-                System.Windows.MessageBox.Show("请先选择对比文件夹", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                System.Windows.MessageBox.Show("请先选择对比文件夹\nPlease select the comparison folders first.", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             pdfFolderPath = TxtPDFPath.Text;
@@ -60,19 +60,19 @@ namespace FormatExcel
             // 1. 检查PDF路径是否选择
             if (string.IsNullOrEmpty(TxtPDFPath.Text))
             {
-                System.Windows.MessageBox.Show("请至少保证选择PDF文件夹", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                System.Windows.MessageBox.Show("请至少保证选择PDF文件夹\nPlease ensure at least the PDF folder is selected.", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             if (!File.Exists(templatePath))
             {
-                System.Windows.MessageBox.Show("模板文件未找到!", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show("模板文件未找到!\nTemplate file not found.", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             pdfFolderPath = TxtPDFPath.Text;
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Title = "另存为标准化表格";
+            saveFileDialog.Title = "另存为标准化表格(Save as standardized table)";
             saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
 
             if (saveFileDialog.ShowDialog() == true)
@@ -84,16 +84,16 @@ namespace FormatExcel
                     try
                     {
                         ExcelGenerator.GenerateExcelReport(pdfFolderPath, TxtDesignStage.Text, TxtCategory.Text, TxtToCompany.Text, TxtZones.Text, templatePath, savePath);
-                        System.Windows.MessageBox.Show("标准化表格生成完成！", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
+                        System.Windows.MessageBox.Show("标准化表格生成完成！\n ", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     catch (Exception ex)
                     {
-                        System.Windows.MessageBox.Show(ex.Message, "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                        System.Windows.MessageBox.Show(ex.Message, "错误(Error!)", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 else
                 {
-                    System.Windows.MessageBox.Show("请选择一个有效的保存路径", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                    System.Windows.MessageBox.Show("请选择一个有效的保存路径\nPlease select a valid save path.", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -103,7 +103,7 @@ namespace FormatExcel
         {
             CommonOpenFileDialog dialog = new CommonOpenFileDialog();
             dialog.IsFolderPicker = true; // 设置为文件夹选择模式
-            dialog.Title = "选择PDF文件夹";
+            dialog.Title = "选择PDF文件夹(Please select the PDF folder)";
 
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
@@ -117,7 +117,7 @@ namespace FormatExcel
         {
             CommonOpenFileDialog dialog = new CommonOpenFileDialog();
             dialog.IsFolderPicker = true; // 设置为文件夹选择模式
-            dialog.Title = "选择DWG文件夹";
+            dialog.Title = "选择DWG文件夹(Please select the DWG folder)";
 
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {

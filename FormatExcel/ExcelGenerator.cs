@@ -127,34 +127,62 @@ namespace FormatExcel
             // 3. 返回最后一个部分
             if (parts.Length > 0)
             {
-                string lastPart = parts[2] ;
+                //取名称的最后一部分
+                string part = parts.Last() ;
+                //将最后一部分用-进行分隔
+                string[] lastPart = fileNameWithoutExtension.Split('-');
+                //再取其第一部分，如VL1 TV1...
+                string unit = parts.First();
 
-
-                switch (lastPart)
+                switch (unit)
                 {
-                    case "C10":
+                    case  "C10":
+                    case  "TC10":
+                    case  "C10M":
                         return "Villa Type C10";
                     case "VL1":
+                    case "TV1":
+                    case "V1M":
                         return "Villa Type 01";
                     case "VL2":
+                    case "TV2":
+                    case "V2M":
                         return "Villa Type 02";
                     case "VL3":
+                    case "TV3":
+                    case "V3M":
                         return "Villa Type 03";
                     case "VL4":
+                    case "TV4":
+                    case "V4M":
                         return "Villa Type 04";
                     case "DP1":
+                    case "DP1M":
+                    case "TDP1":
                         return "Duplex Type 01";
                     case "DP2":
+                    case "DP2M":
+                    case "TDP2":
                         return "Duplex Type 02";
                     case "DP3":
+                    case "DP3M":
+                    case "TDP3":
                         return "Duplex Type 03";
                     case "DP4":
+                    case "DP4M":
+                    case "TDP4":
                         return "Duplex Type 04";
                     case "TH1":
+                    case "TH1M":
+                    case "TTH1":
                         return "Town House 01";
                     case "TH2":
+                    case "TH2M":
+                    case "TTH2":
                         return "Town House 02";
                     case "TH3":
+                    case "TH3M":
+                    case "TTH3":
                         return "Town House 03";
                     case "D01":
                         return "Cluster Type1(DP1-DP1)";
@@ -190,7 +218,7 @@ namespace FormatExcel
                         return "Cluster Type16(DP4-TH3-TH3-TH3-TH3-DP4)";
 
                     default:
-                        return lastPart;
+                        return unit;
                 }
             }
             else
