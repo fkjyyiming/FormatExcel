@@ -14,8 +14,8 @@ namespace FormatExcel
         }
         public void SetResult(int totalCompared, int totalDiff, List<string> diffPdf, List<string> diffDwg)
         {
-            txtReportSummary.Text = $"共有 {totalCompared} 组文件进行了对比。\n" +
-                                      $"共有 {totalDiff/2} 组文件命名有差异。";
+            txtReportSummary.Text = $"共有 {totalCompared} 组文件进行了对比\nA total of {totalCompared} pairs of files were compared.\n" +
+                                      $"共有 {totalDiff/2} 组文件命名有差异\nA total of {totalDiff / 2} pairs of files exhibited naming discrepancies.";
 
             lstPdfFiles.ItemsSource = diffPdf;
             lstDwgFiles.ItemsSource = diffDwg;

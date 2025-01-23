@@ -136,9 +136,9 @@ namespace FormatExcel
 
                 switch (unit)
                 {
-                    case  "C10":
-                    case  "TC10":
-                    case  "C10M":
+                    case "C10":
+                    case "TC10":
+                    case "C10M":
                         return "Villa Type C10";
                     case "VL1":
                     case "TV1":
