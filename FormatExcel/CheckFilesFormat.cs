@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace FormatExcel
@@ -35,8 +36,6 @@ namespace FormatExcel
             foreach (string filePath in files)
             {
 
-                // 00103_CHE_VL1_L02_SHD_HC_002150_R03_V1-2HC1500   2HC1500  15 150厚的板 序号0  对应002150  15 是厚度 0 是序号
-                // 00103_CHE_VL1_L02_SHD_HC_002260_R02_V1-2HC2510   2HC2510  25  250厚的板 序号10  对应002260 （应该为00225x)但是超号，+1成002260
                 //判断条件1
 
                 //  获取真实文件名（不带拓展名）
@@ -54,17 +53,117 @@ namespace FormatExcel
                 var version = parts[7];
                 var elementDetail = parts[8];
 
-                // 定义错误情况 (至少三种)
-                // 错误情况 1: 文件被_分割后的部分数量不等于8
+
+                // 错误情况1: 文件被_分割后的部分数量不等于8
                 if (parts.Length != 9)
                 {
                     issueCount++;
+                    //利用辅助方法 UpdateIssueList 更新 FileIssue 列表 （该方法为static）
                     UpdateIssueList(issues, fileNameWithoutExtension, "文件长度或分隔_错误");
                 }
-                if ((parts[0].Length != 5) || (parts[6].Length != 6) || (parts[7].Length != 3))
+                // 错误情况2：纯数字部分或版本号长度错误
+                if ((assetCode.Length != 5) || (elementNum.Length != 6) || (version.Length != 3) || (elementDetail.Length != 5 || elementDetail.Length != 7))
                 {
                     issueCount++;
-                    UpdateIssueList(issues, fileNameWithoutExtension, "纯数字部分或版本号长度错误");
+                    UpdateIssueList(issues, fileNameWithoutExtension, "纯数字或版本部分长度错误");
+                }
+                // 错误情况3：构件编号不符合规范
+                // 00103_CHE_VL1_L02_SHD_HC_002150_R03_V1-2HC1500   2HC1500  15 150厚的板 序号0  对应002150  15 是厚度 0 是序号
+                // 00103_CHE_VL1_L02_SHD_HC_002260_R02_V1-2HC2510   2HC2510  25  250厚的板 序号10  对应002260 （应该为00225x)但是超号，+1成002260
+
+
+                var (ele_Level, ele_Category, ele_Num) = GetStringParts(elementDetail);
+
+                // 错误情况3.1 ：对于长（HC、SS）、短（ST）之外的类型（最后一段的长度为5，其中为2位字母，3位数字），直接将前面纯数字后三位进行对比，若不一致则报错
+                if (ele_Category != "HC" || ele_Category != "SS" || ele_Category != "ST")
+                {
+                    var numFrontPart = elementNum.Substring(elementNum.Length - 1, 3);
+                    if (elementDetail.Length != 5)
+                    {
+                        issueCount++;
+                        UpdateIssueList(issues, fileNameWithoutExtension, "最后编号长度错误");
+
+                    }
+                    else if (ele_Num != numFrontPart)
+                    {
+                        issueCount++;
+                        UpdateIssueList(issues, fileNameWithoutExtension, "构件编号前后不一致");
+                    }
+                    else
+                    {
+                        continue;
+                    }
+
+                }
+
+                // 错误情况3.2 ：对于短（ST）类型（总共长度为4，其中2位字母，2位数字，最后一段无楼层信息），直接将前面纯数字后两位进行对比，若不一致则报错
+                if (ele_Category == "ST")
+                {
+                    var numFrontPart = elementNum.Substring(elementNum.Length - 1, 2);
+                    if (elementDetail.Length != 4)
+                    {
+                        issueCount++;
+                        UpdateIssueList(issues, fileNameWithoutExtension, "最后编号长度错误");
+
+                    }
+                    else if (ele_Num != numFrontPart)
+                    {
+                        issueCount++;
+                        UpdateIssueList(issues, fileNameWithoutExtension, "构件编号前后不一致");
+                    }
+                    else
+                    {
+                        continue;
+                    }
+
+                }
+
+                // 错误情况3.3 ：对于短（ST）类型（总共长度为4，其中2位字母，2位数字，最后一段无楼层信息），直接将前面纯数字后两位进行对比，若不一致则报错
+                if (ele_Category == "ST")
+                {
+                    var numFrontPart = elementNum.Substring(elementNum.Length - 1, 2);
+                    if (elementDetail.Length != 4)
+                    {
+                        issueCount++;
+                        UpdateIssueList(issues, fileNameWithoutExtension, "最后编号长度错误");
+
+                    }
+                    else if (ele_Num != numFrontPart)
+                    {
+                        issueCount++;
+                        UpdateIssueList(issues, fileNameWithoutExtension, "构件编号前后不一致");
+                    }
+                    else
+                    {
+                        continue;
+                    }
+
+                }
+
+
+
+
+
+
+                //对于长（HC、SS）、短（ST）之外的类型（最后一段的长度为5），直接将四位数字进行对比
+                if (elementDetail.Length == 5)
+                {
+                    var numFront = elementNum;
+                    var numFrontPart = numFront.Substring(numFront.Length - 1, 3);
+                    //对于长（HC、SS）、短（ST）之外的类型，直接将四位数字进行对比
+                    if (ele_Category != "HC" || ele_Category != "SS" || ele_Category != "ST")
+                    {
+                        if (ele_Num != numFrontPart)
+                        {
+                            issueCount++;
+                            UpdateIssueList(issues, fileNameWithoutExtension, "构件编号前后不一致");
+                        }
+                        else
+                        {
+                            continue;
+                        }
+
+                    }
                 }
 
 
@@ -81,14 +180,75 @@ namespace FormatExcel
         {
             FileIssue existingIssue = issues.FirstOrDefault(x => x.FileName == fileName);
 
+            //如果不存在，则添加新的 FileIssue
             if (existingIssue == null)
             {
                 issues.Add(new FileIssue { FileName = fileName, IssueType = issueType });
             }
+            //如果存在，则更新 IssueType
             else
             {
                 existingIssue.IssueType += "," + issueType;
             }
         }
+
+
+        /// <summary>
+        /// 获取文件名最后一部分的字符串列表，如"V1-SC001"或"V1-2HC1500"
+        /// 以-拆分后，分为两种情况
+        /// 若第二部分长度为5，则分隔为长度为2的字母和长度为3的数字，并将3位数字的第一个数字作为楼层
+        /// 若第二部分长度为7，则分隔为长度为1的数字（楼层）、长度为3的字母（构件类型）、长度为4的字母（构件编号）
+        /// </summary>
+        /// <param name="lastPart">输入为文件名的最后一部分，如"V1-SC001"或"V1-2HC1500"</param>
+        /// <returns></returns>
+        private static (string, string, string) GetStringParts(string lastPart)
+        {
+            var lastParts = lastPart.Split('-').ToList();
+            var lastNum = lastParts.Last();
+            return SperateNumExtractThreeParts(lastNum);
+        }
+
+        /// <summary>
+        /// 获取文件名最后一部分的字符串列表，如"SC001"或"2HC1500"，返回楼层、构件类型、构件编号
+        /// </summary>
+        /// <param name="lastParts"></param>
+        /// <returns></returns>
+        private static (string, string, string) SperateNumExtractThreeParts(string lastParts)
+        {
+            // 匹配第一个数字的正则表达式 (可能不存在)
+            string firstNumberPattern = @"^\d+";
+            // 匹配字母部分的正则表达式
+            string lettersPattern = @"[a-zA-Z]+";
+            // 匹配最后数字部分的正则表达式
+            string lastNumberPattern = @"\d+$";
+
+            // 提取第一个数字
+            Match firstNumberMatch = Regex.Match(lastParts, firstNumberPattern);
+            string firstNumber = firstNumberMatch.Success ? firstNumberMatch.Value : string.Empty;
+
+            // 提取字母部分
+            Match lettersMatch = Regex.Match(lastParts, lettersPattern);
+            string letters = lettersMatch.Success ? lettersMatch.Value : string.Empty;
+
+            // 提取最后数字部分
+            Match lastNumberMatch = Regex.Match(lastParts, lastNumberPattern);
+            string lastNumber = lastNumberMatch.Success ? lastNumberMatch.Value : string.Empty;
+
+            // 
+            if (firstNumber.Length > 0)
+            {
+                return (firstNumber, letters, lastNumber);
+            }
+            else if (lastNumber.Length == 2)
+            {
+                return ("", letters.Substring(1), lastNumber);
+            }
+            else
+            {
+                return (lastNumber.Substring(0, 1), letters, lastNumber);
+            }
+
+        }
+
     }
 }
