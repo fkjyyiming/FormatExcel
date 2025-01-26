@@ -40,9 +40,10 @@ namespace FormatExcel
 
                 //  获取真实文件名（不带拓展名）
                 string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filePath);
+                string trueName = fileNameWithoutExtension.Split('.').FirstOrDefault();
 
                 //使用下划线 "_" 分割文件名
-                string[] parts = fileNameWithoutExtension.Split('_');
+                string[] parts = trueName.Split('_');
                 var assetCode = parts[0];
                 var orignator = parts[1];
                 var unitType = parts[2];
@@ -62,10 +63,10 @@ namespace FormatExcel
                     UpdateIssueList(issues, fileNameWithoutExtension, "文件长度或分隔_错误");
                 }
                 // 错误情况2：纯数字部分或版本号长度错误
-                if ((assetCode.Length != 5) || (elementNum.Length != 6) || (version.Length != 3) || (elementDetail.Length != 5 || elementDetail.Length != 7))
+                if ((assetCode.Length != 5) || (elementNum.Length != 6) || (version.Length != 3) )
                 {
                     issueCount++;
-                    UpdateIssueList(issues, fileNameWithoutExtension, "纯数字或版本部分长度错误");
+                    UpdateIssueList(issues, fileNameWithoutExtension, "数字或版本部分长度错误");
                 }
                 // 错误情况3：构件编号不符合规范
                 // 00103_CHE_VL1_L02_SHD_HC_002150_R03_V1-2HC1500   2HC1500  15 150厚的板 序号0  对应002150  15 是厚度 0 是序号
@@ -73,12 +74,17 @@ namespace FormatExcel
 
 
                 var (ele_Level, ele_Category, ele_Num) = GetStringParts(elementDetail);
+                var a =ele_Level;
+                var b = ele_Category;
+                var c =ele_Num;
 
                 // 错误情况3.1 ：对于长（HC、SS）、短（ST）之外的类型（最后一段的长度为5，其中为2位字母，3位数字），直接将前面纯数字后三位进行对比，若不一致则报错
-                if (ele_Category != "HC" || ele_Category != "SS" || ele_Category != "ST")
+                if (ele_Category != "HC" && ele_Category != "SS" && ele_Category != "ST")
                 {
-                    var numFrontPart = elementNum.Substring(elementNum.Length - 1, 3);
-                    if (elementDetail.Length != 5)
+                    //取纯数字部分的后三位
+                    var numFrontPart = elementNum.Substring(elementNum.Length - 3, 3);
+
+                    if ((elementDetail.Split('-').ToList().Last().Length) != 5)
                     {
                         issueCount++;
                         UpdateIssueList(issues, fileNameWithoutExtension, "最后编号长度错误");
@@ -88,6 +94,11 @@ namespace FormatExcel
                     {
                         issueCount++;
                         UpdateIssueList(issues, fileNameWithoutExtension, "构件编号前后不一致");
+                    }
+                    else if (ele_Level != elementNum[3].ToString())
+                    {
+                        issueCount++;
+                        UpdateIssueList(issues, fileNameWithoutExtension, "前后标高对应错误");
                     }
                     else
                     {
@@ -99,8 +110,8 @@ namespace FormatExcel
                 // 错误情况3.2 ：对于短（ST）类型（总共长度为4，其中2位字母，2位数字，最后一段无楼层信息），直接将前面纯数字后两位进行对比，若不一致则报错
                 if (ele_Category == "ST")
                 {
-                    var numFrontPart = elementNum.Substring(elementNum.Length - 1, 2);
-                    if (elementDetail.Length != 4)
+                    var numFrontPart = elementNum.Substring(elementNum.Length - 2, 2);
+                    if ((elementDetail.Split('-').ToList().Last().Length) != 4)
                     {
                         issueCount++;
                         UpdateIssueList(issues, fileNameWithoutExtension, "最后编号长度错误");
@@ -118,59 +129,96 @@ namespace FormatExcel
 
                 }
 
-                // 错误情况3.3 ：对于短（ST）类型（总共长度为4，其中2位字母，2位数字，最后一段无楼层信息），直接将前面纯数字后两位进行对比，若不一致则报错
-                if (ele_Category == "ST")
+                // 错误情况3.3 ：对于长类型，由于进位情况比较特殊，所以分两种情况进行判断
+                if (ele_Category == "HC" || ele_Category == "SS")
                 {
-                    var numFrontPart = elementNum.Substring(elementNum.Length - 1, 2);
-                    if (elementDetail.Length != 4)
+
+                    var numFrontPart = elementNum.Substring(elementNum.Length - 2, 1);
+
+                    //最后一段的倒数第一位数字
+                    var keyMark_R1 = elementDetail.Substring(elementDetail.Length - 1, 1);
+                    //最后一段的倒数第二位数字
+                    var keyMark_R2 = elementDetail.Substring(elementDetail.Length - 2, 1);
+                    //最后一段的倒数第三位数字
+                    var keyMark_R3 = elementDetail.Substring(elementDetail.Length - 3, 1);
+                    //最后一段的倒数第四位数字
+                    var keyMark_R4 = elementDetail.Substring(elementDetail.Length - 4, 1);
+
+                    //前面序列号的后三位数字
+                    var seqMark = elementNum.Substring(elementNum.Length - 3);
+
+
+
+
+
+                    //长度固定为7位，若不是则报错
+                    if ((elementDetail.Split('-').ToList().Last().Length) == 7)
                     {
-                        issueCount++;
-                        UpdateIssueList(issues, fileNameWithoutExtension, "最后编号长度错误");
-
-                    }
-                    else if (ele_Num != numFrontPart)
-                    {
-                        issueCount++;
-                        UpdateIssueList(issues, fileNameWithoutExtension, "构件编号前后不一致");
-                    }
-                    else
-                    {
-                        continue;
-                    }
-
-                }
-
-
-
-
-
-
-                //对于长（HC、SS）、短（ST）之外的类型（最后一段的长度为5），直接将四位数字进行对比
-                if (elementDetail.Length == 5)
-                {
-                    var numFront = elementNum;
-                    var numFrontPart = numFront.Substring(numFront.Length - 1, 3);
-                    //对于长（HC、SS）、短（ST）之外的类型，直接将四位数字进行对比
-                    if (ele_Category != "HC" || ele_Category != "SS" || ele_Category != "ST")
-                    {
-                        if (ele_Num != numFrontPart)
+                        if (keyMark_R2 == "0")
                         {
-                            issueCount++;
-                            UpdateIssueList(issues, fileNameWithoutExtension, "构件编号前后不一致");
+                            
+                            var seqFour = seqMark.Insert(seqMark.Length - 1, "0");
+                            if (ele_Num != seqFour)
+                            {
+                                issueCount++;
+                                UpdateIssueList(issues, fileNameWithoutExtension, "构件编号前后不对应");
+                            }
                         }
                         else
                         {
-                            continue;
+                            //最后一段倒数第二位和倒数第三位相加，再转换位字符串，与前面序列号的倒数第三位数字进行对比
+
+                            var keyMark = (int.Parse(keyMark_R2) + int.Parse(keyMark_R3)).ToString();
+                            var lastPart = keyMark_R4 + keyMark + keyMark_R1;
+
+                            if (seqMark != lastPart)
+                            {
+                                issueCount++;
+                                UpdateIssueList(issues, fileNameWithoutExtension, "构件编号前后不对应");
+                            } 
+
                         }
 
                     }
+                    else
+                    {
+                        issueCount++;
+                        UpdateIssueList(issues, fileNameWithoutExtension, "最后编号长度错误");
+                    }
+
+
                 }
 
 
-
-
-
             }
+
+
+
+
+
+
+            ////对于长（HC、SS）、短（ST）之外的类型（最后一段的长度为5），直接将四位数字进行对比
+            //if (elementDetail.Length == 5)
+            //{
+            //    var numFront = elementNum;
+            //    var numFrontPart = numFront.Substring(numFront.Length - 1, 3);
+            //    //对于长（HC、SS）、短（ST）之外的类型，直接将四位数字进行对比
+            //    if (ele_Category != "HC" || ele_Category != "SS" || ele_Category != "ST")
+            //    {
+            //        if (ele_Num != numFrontPart)
+            //        {
+            //            issueCount++;
+            //            UpdateIssueList(issues, fileNameWithoutExtension, "构件编号前后不一致");
+            //        }
+            //        else
+            //        {
+            //            continue;
+            //        }
+
+            //    }
+            //}
+
+
 
             return (issueCount, issues);
         }
@@ -215,24 +263,17 @@ namespace FormatExcel
         /// <returns></returns>
         private static (string, string, string) SperateNumExtractThreeParts(string lastParts)
         {
-            // 匹配第一个数字的正则表达式 (可能不存在)
-            string firstNumberPattern = @"^\d+";
-            // 匹配字母部分的正则表达式
-            string lettersPattern = @"[a-zA-Z]+";
-            // 匹配最后数字部分的正则表达式
-            string lastNumberPattern = @"\d+$";
+            string pattern = @"^(\d*)([A-Z]+)(\d+)$";
+            var match = Regex.Match(lastParts, pattern, RegexOptions.IgnoreCase);
 
             // 提取第一个数字
-            Match firstNumberMatch = Regex.Match(lastParts, firstNumberPattern);
-            string firstNumber = firstNumberMatch.Success ? firstNumberMatch.Value : string.Empty;
+            string firstNumber = match.Groups[1].Value;
 
             // 提取字母部分
-            Match lettersMatch = Regex.Match(lastParts, lettersPattern);
-            string letters = lettersMatch.Success ? lettersMatch.Value : string.Empty;
+            string letters = match.Groups[2].Value;
 
             // 提取最后数字部分
-            Match lastNumberMatch = Regex.Match(lastParts, lastNumberPattern);
-            string lastNumber = lastNumberMatch.Success ? lastNumberMatch.Value : string.Empty;
+            string lastNumber = match.Groups[3].Value;
 
             // 
             if (firstNumber.Length > 0)
@@ -241,11 +282,11 @@ namespace FormatExcel
             }
             else if (lastNumber.Length == 2)
             {
-                return ("", letters.Substring(1), lastNumber);
+                return ("", letters, lastNumber);
             }
             else
             {
-                return (lastNumber.Substring(0, 1), letters, lastNumber);
+                return (lastNumber[0].ToString(), letters, lastNumber);
             }
 
         }
