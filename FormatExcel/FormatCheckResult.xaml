@@ -5,29 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FormatExcel"
         mc:Ignorable="d"
- Title="格式检查结果" Height="450" Width="600">
+ Title="格式检查结果" Height="450" Width="780">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="ResultTextBlock" Grid.Row="0" Margin="10" Text="正在检查 Checking now..." />
+        <TextBlock x:Name="ResultTextBlock" Grid.Row="0" Margin="10" Text="正在检查 Checking now..." FontSize="16" FontWeight="Bold" />
 
         <ListView x:Name="IssuesListView" Grid.Row="1" Margin="10" MouseRightButtonUp="IssuesListView_MouseRightButtonUp">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="文件名称 (File Name)" Width="300">
+                    <GridViewColumn Header="文件名称 (File Name)" Width="450">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding FileName}" Tag="FileName" />
+                                <TextBlock Text="{Binding FileName}" Tag="FileName"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="问题类型 (Issue Type)" Width="250">
+                    <GridViewColumn Header="问题 (Issues)" Width="300">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding IssueType}" Tag="IssueType" />
+                                <TextBlock Text="{Binding IssueType}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

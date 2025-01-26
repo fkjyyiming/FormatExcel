@@ -26,7 +26,7 @@ namespace FormatExcel
 
         internal void SetResult(int issueCount, List<CheckFilesFormat.FileIssue> issues)
         {
-            ResultTextBlock.Text = $"共有 {issueCount} 个文件有问题，如下列表\nA total of {issueCount} files have issues, as listed below.";
+            ResultTextBlock.Text = $"共有 {issueCount} 个问题，如下列表\n {issueCount} issues in total, as listed below.";
             IssuesListView.ItemsSource = issues;
         }
 

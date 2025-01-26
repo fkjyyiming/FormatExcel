@@ -149,16 +149,16 @@ namespace FormatExcel
         private void CheckPDFFormat_Click(object sender, RoutedEventArgs e)
         {
             // 1. 检查路径是否为空
-            if (string.IsNullOrEmpty(TxtDWGPath.Text))
+            if (string.IsNullOrEmpty(TxtPDFPath.Text))
             {
                 System.Windows.MessageBox.Show("请先选择PDF文件夹\nPlease select the PDF folder first.", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            dwgFolderPath = TxtDWGPath.Text;
+            pdfFolderPath = TxtPDFPath.Text;
 
             // 调用 FileComparer 并获取结果
-            var (issueCount, issues) = CheckFilesFormat.CheckFiles(dwgFolderPath, ".pdf");
+            var (issueCount, issues) = CheckFilesFormat.CheckFiles(pdfFolderPath, ".pdf");
 
             // 创建并显示结果窗口
             FormatCheckResult resultWindow = new FormatCheckResult();
