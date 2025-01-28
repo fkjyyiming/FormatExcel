@@ -221,6 +221,9 @@
     <None Include="Template\ExcelTemplate%28Don not remove and modify%29.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Template\ExcelTemplate_NewMIDP%28Don not remove and modify%29.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

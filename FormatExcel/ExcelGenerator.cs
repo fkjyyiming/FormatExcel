@@ -115,6 +115,10 @@ namespace FormatExcel
             }
         }
 
+        public static void GenerateExcelReportNewMIDP(string pdfFolderPath, string sheetSize, string scale, string drawingType, string discipline2, string templatePath_NewMIDP, string savePath)
+        {
+            throw new NotImplementedException();
+        }
         private static string GetZones(string fileName)
         {
             if (string.IsNullOrEmpty(fileName)) return null;
@@ -394,5 +398,9 @@ namespace FormatExcel
             if (string.IsNullOrEmpty(filename)) return "";
             return string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
         }
+
+
+
+
     }
 }
