@@ -82,7 +82,7 @@
                 <!-- 第一行文本 -->
                 <TextBlock 
             Text="DWF和PDF检查仅供参考" 
-            FontSize="12" 
+            FontSize="12" Foreground="DarkSlateBlue"
             FontWeight="Bold" 
             TextAlignment="Center"/>
                 <!-- 第二行文本（自动换行） -->
