@@ -75,8 +75,27 @@
                 </StackPanel>
             </Button.Content>
         </Button>
-        <!--<Button Grid.Row="2" Grid.Column="1" Margin="5" Content="DWG文件标准检查"  FontSize="15" FontWeight="Bold" Height="40" Click="CheckDWGFormat_Click"/>-->
-        <!--<Button Grid.Row="2" Grid.Column="2" Margin="5" Content="PDF文件标准检查"  FontSize="15" FontWeight="Bold" Height="40" Click="CheckPDFFormat_Click"/>-->
+
+        <!-- 新增的文本框（位于Grid.Row="2"、Grid.Column="3"） -->
+        <Border Grid.Row="2"  Grid.Column="3" Margin="5" Height="Auto"  VerticalAlignment="Center">
+            <StackPanel VerticalAlignment="Center">
+                <!-- 第一行文本 -->
+                <TextBlock 
+            Text="DWF和PDF检查仅供参考" 
+            FontSize="12" 
+            FontWeight="Bold" 
+            TextAlignment="Center"/>
+                <!-- 第二行文本（自动换行） -->
+                <TextBlock 
+            Text="对于部分GA命名不统一的户型或者组合户型，检查规则不能适用" 
+            FontSize="10" Foreground="Gray"
+            TextAlignment="Center"
+            TextWrapping="Wrap" 
+            Margin="5,0"/>
+            </StackPanel>
+        </Border>
+
+
 
         <!-- Fourth Row: Optional Text -->
         <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Margin="5" Text="文件命名示例(Filename Example)：00103_CHE_VL1_L01_SHD_WL_002108_R02_V1-IP108" TextAlignment="Center" />
@@ -89,17 +108,17 @@
             <TextBlock  FontSize="10" FontWeight="Thin" Foreground="DarkSlateBlue" TextAlignment="Center">
             以下文本内容可缺省
             <LineBreak/>
-            The following text boxes can be left blank.      
+            The following text boxes can be left blank.
             </TextBlock>
         </StackPanel>
-        
-        
+
+
         <StackPanel Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="5">
             <TextBlock Text="[ OLD MIDP INFORMATION ]" FontSize="16" FontWeight="Bold"  TextAlignment="Center"/>
             <TextBlock  FontSize="10" FontWeight="Thin" Foreground="DarkSlateBlue" TextAlignment="Center">
             以下文本内容可缺省
             <LineBreak/>
-            The following text boxes can be left blank.      
+            The following text boxes can be left blank.
             </TextBlock>
         </StackPanel>
 
