@@ -5,7 +5,7 @@ VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormatExcel", "FormatExcel\FormatExcel.csproj", "{A7EF32EC-E4A7-45EC-8921-365023D96F86}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FormatExcelExe", "FormatExcelExe\FormatExcelExe.vdproj", "{05D2F8EC-75FF-4C3C-9CCD-F92D5EF5409E}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FormatExcelSetup", "FormatExcelSetup\FormatExcelSetup.vdproj", "{92E3957C-4423-4993-99A0-947C737ED9F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,8 +17,8 @@ Global
 		{A7EF32EC-E4A7-45EC-8921-365023D96F86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7EF32EC-E4A7-45EC-8921-365023D96F86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7EF32EC-E4A7-45EC-8921-365023D96F86}.Release|Any CPU.Build.0 = Release|Any CPU
-		{05D2F8EC-75FF-4C3C-9CCD-F92D5EF5409E}.Debug|Any CPU.ActiveCfg = Debug
-		{05D2F8EC-75FF-4C3C-9CCD-F92D5EF5409E}.Release|Any CPU.ActiveCfg = Release
+		{92E3957C-4423-4993-99A0-947C737ED9F8}.Debug|Any CPU.ActiveCfg = Debug
+		{92E3957C-4423-4993-99A0-947C737ED9F8}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

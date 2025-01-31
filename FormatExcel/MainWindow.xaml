@@ -175,7 +175,7 @@
         <TextBlock Grid.Row="10" Grid.Column="2" Grid.ColumnSpan="2" Margin="10" VerticalAlignment="Bottom"  HorizontalAlignment="Right" TextAlignment="Right">
             <TextBlock Text="Merlin Hu, merlin.dctc@gmail.com" />
             <LineBreak />
-            <TextBlock Text="CSADI | DCTC Dep." />
+            <TextBlock Text="CSADI | DCTC Dept." />
         </TextBlock>
     </Grid>
 </Window>
