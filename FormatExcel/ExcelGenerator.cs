@@ -117,8 +117,174 @@ namespace FormatExcel
 
         public static void GenerateExcelReportNewMIDP(string pdfFolderPath, string sheetSize, string scale, string drawingType, string discipline2, string templatePath_NewMIDP, string savePath)
         {
-            throw new NotImplementedException();
+            // 获取 PDF 文件列表
+            string[] pdfFiles = Directory.GetFiles(pdfFolderPath, "*.pdf", SearchOption.TopDirectoryOnly);
+            IWorkbook workbook = null;
+            try
+            {
+                using (FileStream templateFile = new FileStream(templatePath_NewMIDP, FileMode.Open, FileAccess.Read))
+                //using 使用后会自动释放资源，不需要手动关闭文件流
+                //判断模板文件类型
+                {
+                    if (templatePath_NewMIDP.EndsWith(".xls", StringComparison.OrdinalIgnoreCase))
+                    {
+                        workbook = new HSSFWorkbook(templateFile);
+                    }
+                    else if (templatePath_NewMIDP.EndsWith(".xlsx", StringComparison.OrdinalIgnoreCase))
+                    {
+                        workbook = new XSSFWorkbook(templateFile);
+                    }
+                    else
+                    {
+                        throw new Exception("不支持的模板文件类型!");
+                    }
+                    if (workbook == null)
+                    {
+                        throw new Exception("Excel 模板文件打开失败，请检查模板文件");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Excel 模板文件打开失败，请检查模板文件：{ex.Message}");
+            }
+            using (workbook)
+            {
+                ISheet worksheet = workbook.GetSheetAt(0); // 获取第一个工作表
+                //户型行固定为14行
+                int zoneNameRow = 13;
+                //获取户型
+                string zoneName = GetZoneShort(pdfFiles[0]);
+                //填充户型至14行 2列
+                IRow datazoneRow = worksheet.CreateRow(zoneNameRow);
+
+                datazoneRow.CreateCell(1).SetCellValue(zoneName);
+
+
+                // 从第15行开始填充数据, NPOI 的索引是从0开始，但是我们希望从第15行开始，所以初始值是 14.
+                int row = 14; 
+
+
+                //遍历pdf文件
+                foreach (string pdfFile in pdfFiles)
+                {
+                    try
+                    {
+                        string pdfFileName = Path.GetFileName(pdfFile);
+                        string fileName = Path.GetFileNameWithoutExtension(pdfFileName);
+
+                        //第1列和第14列相同
+                        string documentNumber = GetDocumentNumber(fileName);                        
+                        string[] documentNameParts = documentNumber.Split('-');
+
+
+                        //第2列为户型-描述
+                        string descriptionPart1 =  GetZones(fileName);
+                        string descriptionPart2 = GetDiscipline(fileName);
+                        string description = $"{descriptionPart1} - {descriptionPart2}";
+
+                        //第3列为交付格式，固定为DWG,PDF
+                        string exchangeFormats = "DWG,PDF";
+
+                        //第4列为图纸规格 sheetSize
+
+                        //第5列为比例 scale
+
+                        //第6列为项目识别码,为documentNumber的第1部分
+                        string projeEPIdentifier = documentNameParts[0];
+
+                        //第7列为作者,为documentNumber的第2部分
+                        string originator = documentNameParts[1];
+
+                        //第8列为户型,为documentNumber的第3部分
+                        string zoneName_1 = documentNameParts[2];
+
+                        //第9列为标高,为documentNumber的第4部分
+                        string level = documentNameParts[3];
+
+                        //第10列为阶段,为documentNumber的第5部分
+                        string type = documentNameParts[4];
+
+                        //第11列为专业,为documentNumber的第6部分
+                        string discipline = documentNameParts[5];
+
+                        //第12列为序列号,为documentNumber的第7部分
+                        string serialNumber = documentNameParts[6];
+
+                        //第13列为图纸类型,为drawingType
+
+                        //第14列与第1列相同
+                        string informationIdentification = documentNumber;
+
+                        //第15列为子专业，为discipline2
+
+                        //第16列为文档类型，固定为Drawings
+                        string documentType = "Drawings";
+
+
+
+                        IRow dataRow = worksheet.CreateRow(row);
+                        dataRow.CreateCell(0).SetCellValue(documentNumber);
+                        dataRow.CreateCell(1).SetCellValue(description);
+                        dataRow.CreateCell(2).SetCellValue(exchangeFormats);
+                        dataRow.CreateCell(3).SetCellValue(sheetSize);
+                        dataRow.CreateCell(4).SetCellValue(scale);
+                        dataRow.CreateCell(5).SetCellValue(projeEPIdentifier);
+                        dataRow.CreateCell(6).SetCellValue(originator);
+                        dataRow.CreateCell(7).SetCellValue(zoneName_1);
+                        dataRow.CreateCell(8).SetCellValue(level);
+                        dataRow.CreateCell(9).SetCellValue(type);
+                        dataRow.CreateCell(10).SetCellValue(discipline);
+                        dataRow.CreateCell(11).SetCellValue(serialNumber);
+                        dataRow.CreateCell(12).SetCellValue(drawingType);
+                        dataRow.CreateCell(13).SetCellValue(informationIdentification);
+                        dataRow.CreateCell(14).SetCellValue(discipline2);
+                        dataRow.CreateCell(15).SetCellValue(documentType);
+
+
+
+                        row++; //递增row
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception($"文件数据写入异常，请检查命名规则:{ex.Message}");
+                    }
+
+                }
+
+                try
+                {
+                    using (FileStream file = new FileStream(savePath, FileMode.Create, FileAccess.Write))
+                    {
+                        workbook.Write(file);
+                        if (!File.Exists(savePath))
+                        {
+                            throw new Exception($"文件保存失败，请检查权限，路径是否正确:{savePath}");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"保存文件时发生错误，请检查路径是否有效，是否具有写入权限:{ex.Message}");
+                }
+            }
         }
+
+        private static string GetZoneShort(string filename)
+        {
+            string[] parts = filename.Split('_');
+            // 3. 返回最后一个部分
+            if (parts.Length > 0)
+            {
+                //返回第三部分
+                return parts[2];
+            }
+            else
+            {
+                return null; // 如果分割后没有部分，返回null
+            }
+        }
+
         private static string GetZones(string fileName)
         {
             if (string.IsNullOrEmpty(fileName)) return null;
@@ -148,19 +314,23 @@ namespace FormatExcel
                     case "C10M":
                         return "Villa Type C10";
                     case "VL1":
+                    case "V1":
                     case "TV1":
                     case "V1M":
                         return "Villa Type 01";
                     case "VL2":
                     case "TV2":
+                    case "V2":
                     case "V2M":
                         return "Villa Type 02";
                     case "VL3":
                     case "TV3":
+                    case "V3":
                     case "V3M":
                         return "Villa Type 03";
                     case "VL4":
                     case "TV4":
+                    case "V4":
                     case "V4M":
                         return "Villa Type 04";
                     case "DP1":
