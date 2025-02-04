@@ -42,8 +42,8 @@ namespace FormatExcel
                 //  获取真实文件名（不带拓展名）
                 string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filePath);
                 string trueName = fileNameWithoutExtension.Split('.').FirstOrDefault();
-               
-                
+
+
                 //使用下划线 "_" 分割文件名
                 string[] parts = trueName.Split('_');
 
@@ -87,8 +87,8 @@ namespace FormatExcel
                     var b = ele_Category;
                     var c = ele_Num;
 
-                    // 错误情况3.1 ：对于长（HC、SS）、短（ST）之外的类型（最后一段的长度为5，其中为2位字母，3位数字），直接将前面纯数字后三位进行对比，若不一致则报错
-                    if (ele_Category != "HC" && ele_Category != "SS" && ele_Category != "ST")
+                    // 错误情况3.1 ：对于长（HC、SS）、短（ST、LS）之外的类型（最后一段的长度为5，其中为2位字母，3位数字），直接将前面纯数字后三位进行对比，若不一致则报错
+                    if (ele_Category != "HC" && ele_Category != "SS" && ele_Category != "ST" && ele_Category != "LS")
                     {
                         //取纯数字部分的后三位
                         var numFrontPart = elementNum.Substring(elementNum.Length - 3, 3);
@@ -116,8 +116,8 @@ namespace FormatExcel
 
                     }
 
-                    // 错误情况3.2 ：对于短（ST）类型（总共长度为4，其中2位字母，2位数字，最后一段无楼层信息），直接将前面纯数字后两位进行对比，若不一致则报错
-                    if (ele_Category == "ST")
+                    // 错误情况3.2 ：对于短（ST、LS）类型（总共长度为4，其中2位字母，2位数字，最后一段无楼层信息），直接将前面纯数字后两位进行对比，若不一致则报错
+                    if (ele_Category == "ST" || ele_Category == "LS")
                     {
                         var numFrontPart = elementNum.Substring(elementNum.Length - 2, 2);
                         if ((elementDetail.Split('-').ToList().Last().Length) != 4)
@@ -196,7 +196,7 @@ namespace FormatExcel
                         }
 
                     }
-                
+
 
 
                 }
