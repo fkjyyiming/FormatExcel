@@ -88,7 +88,7 @@ namespace FormatExcel
                     var c = ele_Num;
 
                     // 错误情况3.1 ：对于长（HC、SS）、短（ST）之外的类型（最后一段的长度为5，其中为2位字母，3位数字），直接将前面纯数字后三位进行对比，若不一致则报错
-                    if (ele_Category != "HC" && ele_Category != "SS" && ele_Category != "ST")
+                    if (ele_Category != "HC" && ele_Category != "SS" && ele_Category != "ST" && ele_Category != "LS")
                     {
                         //取纯数字部分的后三位
                         var numFrontPart = elementNum.Substring(elementNum.Length - 3, 3);
@@ -117,7 +117,7 @@ namespace FormatExcel
                     }
 
                     // 错误情况3.2 ：对于短（ST）类型（总共长度为4，其中2位字母，2位数字，最后一段无楼层信息），直接将前面纯数字后两位进行对比，若不一致则报错
-                    if (ele_Category == "ST")
+                    if (ele_Category == "ST" || ele_Category == "LS")
                     {
                         var numFrontPart = elementNum.Substring(elementNum.Length - 2, 2);
                         if ((elementDetail.Split('-').ToList().Last().Length) != 4)
