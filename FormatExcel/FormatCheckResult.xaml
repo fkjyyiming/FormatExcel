@@ -5,26 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FormatExcel"
         mc:Ignorable="d"
- Title="格式检查结果" Height="450" Width="780">
+ Title="Format check results" Height="450" Width="780">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="ResultTextBlock" Grid.Row="0" Margin="10" Text="正在检查 Checking now..." FontSize="16" FontWeight="Bold" />
+        <TextBlock x:Name="ResultTextBlock" Grid.Row="0" Margin="10" Text="Checking now..." FontSize="16" FontWeight="Bold" />
 
         <ListView x:Name="IssuesListView" Grid.Row="1" Margin="10" MouseRightButtonUp="IssuesListView_MouseRightButtonUp">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="文件名称 (File Name)" Width="450">
+                    <GridViewColumn Header="File Name" Width="450">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding FileName}" Tag="FileName"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="问题 (Issues)" Width="300">
+                    <GridViewColumn Header="Issues" Width="300">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding IssueType}" />
@@ -35,8 +35,8 @@
             </ListView.View>
             <ListView.ContextMenu>
                 <ContextMenu x:Name="CopyContextMenu">
-                    <MenuItem Header="复制文件名称(Copy File Name)" Click="CopyFileNameMenuItem_Click" />
-                    <MenuItem Header="复制问题类型(Copy Issue Type)" Click="CopyIssueTypeMenuItem_Click" />
+                    <MenuItem Header="Copy File Name" Click="CopyFileNameMenuItem_Click" />
+                    <MenuItem Header="Copy Issue Type" Click="CopyIssueTypeMenuItem_Click" />
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>

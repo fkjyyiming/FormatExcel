@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FormatExcel"
         mc:Ignorable="d"
-        Title="对比结果 CompareResult" Height="500" Width="900"
+        Title="CompareResult" Height="500" Width="900"
         WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -23,7 +23,7 @@
                 <ListBox Name="lstPdfFiles" >
                     <ListBox.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="复制(Copy)" Click="CopyPdfText_Click"/>
+                            <MenuItem Header="Copy" Click="CopyPdfText_Click"/>
                         </ContextMenu>
                     </ListBox.ContextMenu>
                 </ListBox>
@@ -32,7 +32,7 @@
                 <ListBox Name="lstDwgFiles">
                     <ListBox.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="复制(Copy)" Click="CopyDwgText_Click"/>
+                            <MenuItem Header="Copy" Click="CopyDwgText_Click"/>
                         </ContextMenu>
                     </ListBox.ContextMenu>
                 </ListBox>

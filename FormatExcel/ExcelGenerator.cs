@@ -36,17 +36,17 @@ namespace FormatExcel
                     }
                     else
                     {
-                        throw new Exception("不支持的模板文件类型!");
+                        throw new Exception("Unsupported template file type!");
                     }
                     if (workbook == null)
                     {
-                        throw new Exception("Excel 模板文件打开失败，请检查模板文件");
+                        throw new Exception("Excel template file failed to open. Please check the template file.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception($"Excel 模板文件打开失败，请检查模板文件：{ex.Message}");
+                throw new Exception($"Excel template file failed to open. Please check the template file ：{ex.Message}");
             }
             using (workbook)
             {
@@ -92,7 +92,7 @@ namespace FormatExcel
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception($"文件数据写入异常，请检查命名规则:{ex.Message}");
+                        throw new Exception($"File data write error. Please check the naming rules :{ex.Message}");
                     }
 
                 }
@@ -104,13 +104,13 @@ namespace FormatExcel
                         workbook.Write(file);
                         if (!File.Exists(savePath))
                         {
-                            throw new Exception($"文件保存失败，请检查权限，路径是否正确:{savePath}");
+                            throw new Exception($"File save failed. Please check the permissions and whether the path is correct :{savePath}");
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"保存文件时发生错误，请检查路径是否有效，是否具有写入权限:{ex.Message}");
+                    throw new Exception($"\r\nAn error occurred while saving the file. Please check if the path is valid and if you have write permissions :{ex.Message}");
                 }
             }
         }
@@ -136,17 +136,17 @@ namespace FormatExcel
                     }
                     else
                     {
-                        throw new Exception("不支持的模板文件类型!");
+                        throw new Exception("Unsupported template file type!");
                     }
                     if (workbook == null)
                     {
-                        throw new Exception("Excel 模板文件打开失败，请检查模板文件");
+                        throw new Exception("Excel template file failed to open. Please check the template file.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception($"Excel 模板文件打开失败，请检查模板文件：{ex.Message}");
+                throw new Exception($"Excel template file failed to open. Please check the template file ：{ex.Message}");
             }
             using (workbook)
             {
@@ -247,7 +247,7 @@ namespace FormatExcel
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception($"文件数据写入异常，请检查命名规则:{ex.Message}");
+                        throw new Exception($"File data write error. Please check the naming rules :{ex.Message}");
                     }
 
                 }
@@ -259,13 +259,13 @@ namespace FormatExcel
                         workbook.Write(file);
                         if (!File.Exists(savePath))
                         {
-                            throw new Exception($"文件保存失败，请检查权限，路径是否正确:{savePath}");
+                            throw new Exception($"File save failed. Please check the permissions and whether the path is correct :{savePath}");
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"保存文件时发生错误，请检查路径是否有效，是否具有写入权限:{ex.Message}");
+                    throw new Exception($"An error occurred while saving the file. Please check if the path is valid and if you have write permissions :{ex.Message}");
                 }
             }
         }

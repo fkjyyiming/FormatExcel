@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FormatExcel"
         mc:Ignorable="d"
-        Title="标准化表格" Height="530" Width="700">
+        Title="Standardized MIDP table" Height="530" Width="700">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -30,19 +30,19 @@
 
         <!-- First Row: DWG Path -->
         <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="5,5,5,5" IsReadOnly="False" Name="TxtDWGPath"  />
-        <Button Grid.Row="0" Grid.Column="4"  Grid.ColumnSpan="1" Margin="5,5,5,5" Content="DWG文件夹(Select Folder)" Name="BtnSelectDWGPath" Click="BtnSelectDWGPath_Click"/>
+        <Button Grid.Row="0" Grid.Column="4"  Grid.ColumnSpan="1" Margin="5,5,5,5" Content="Select DWG Folder" Name="BtnSelectDWGPath" Click="BtnSelectDWGPath_Click"/>
 
         <!-- Second Row: PDF Path -->
         <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="5,5,5,5" IsReadOnly="False" Name="TxtPDFPath"  />
-        <Button Grid.Row="1" Grid.Column="4" Margin="5,5,5,5" Content="PDF文件夹(Select Folder)" Name="BtnSelectPDFPath" Click="BtnSelectPDFPath_Click"/>
+        <Button Grid.Row="1" Grid.Column="4" Margin="5,5,5,5" Content="Select PDF Folder" Name="BtnSelectPDFPath" Click="BtnSelectPDFPath_Click"/>
 
         <!-- Third Row: Four Buttons with Larger Font -->
         <Button  Grid.Row="2" Grid.Column="0" Margin="5" Name="BtnComparePDFDWG"  Height="60" Click="BtnComparePDFDWG_Click" >
             <Button.Content>
                 <StackPanel>
-                    <TextBlock Text="对比PDF和DWG" FontSize="16" FontWeight="Bold"  TextAlignment="Center"/>
+                    <TextBlock Text="Comparison" FontSize="16" FontWeight="Bold"  TextAlignment="Center"/>
                     <TextBlock  FontSize="10" FontWeight="Thin" Foreground="DarkSlateBlue" TextAlignment="Center">
-                        Compare the differences 
+                        Compare the naming differences 
                         <LineBreak/>
                         between PDF and DWG files.
                     </TextBlock>
@@ -53,11 +53,11 @@
         <Button  Grid.Row="2" Grid.Column="1" Margin="5" Name="BtnCheckDWGFiles"  Height="60" Click="CheckDWGFormat_Click" >
             <Button.Content>
                 <StackPanel>
-                    <TextBlock Text="DWG文件标准检查" FontSize="16" FontWeight="Bold"  TextAlignment="Center"/>
+                    <TextBlock Text="Naming Check 1" FontSize="16" FontWeight="Bold"  TextAlignment="Center"/>
                     <TextBlock  FontSize="10" FontWeight="Thin" Foreground="DarkSlateBlue" TextAlignment="Center">
-                        DWG File Standards
+                        DWG Files Naming 
                         <LineBreak/>
-                        Compliance Check
+                        Standards Compliance Check
                     </TextBlock>
                 </StackPanel>
             </Button.Content>
@@ -66,11 +66,11 @@
         <Button  Grid.Row="2" Grid.Column="2" Margin="5" Name="BtnCheckPDFFiles"  Height="60" Click="CheckPDFFormat_Click" >
             <Button.Content>
                 <StackPanel>
-                    <TextBlock Text="PDF文件标准检查" FontSize="16" FontWeight="Bold"  TextAlignment="Center"/>
+                    <TextBlock Text="Naming Check 2" FontSize="16" FontWeight="Bold"  TextAlignment="Center"/>
                     <TextBlock  FontSize="10" FontWeight="Thin" Foreground="DarkSlateBlue" TextAlignment="Center">
-                        PDF File Standards
+                        PDF Files Naming
                         <LineBreak/>
-                        Compliance Check
+                        Standards Compliance Check
                     </TextBlock>
                 </StackPanel>
             </Button.Content>
@@ -81,24 +81,25 @@
             <StackPanel VerticalAlignment="Center">
                 <!-- 第一行文本 -->
                 <TextBlock 
-            Text="DWF和PDF检查仅供参考" 
+            Text="DWF and PDF files naming checks are for reference only." 
             FontSize="12" Foreground="DarkSlateBlue"
+                                TextWrapping="Wrap" 
             FontWeight="Bold" 
             TextAlignment="Center"/>
                 <!-- 第二行文本（自动换行） -->
-                <TextBlock 
+                <!--<TextBlock 
             Text="对于部分GA命名不统一的户型或者组合户型，检查规则不能适用" 
             FontSize="10" Foreground="Gray"
             TextAlignment="Center"
             TextWrapping="Wrap" 
-            Margin="5,0"/>
+            Margin="5,0"/>-->
             </StackPanel>
         </Border>
 
 
 
         <!-- Fourth Row: Optional Text -->
-        <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Margin="5" Text="文件命名示例(Filename Example)：00103_CHE_VL1_L01_SHD_WL_002108_R02_V1-IP108" TextAlignment="Center" />
+        <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Margin="5" Text="Filename Example：00103_CHE_VL1_L01_SHD_WL_002108_R02_V1-IP108" TextAlignment="Center" />
 
         <!-- Fourth Row: Optional Text -->
         <!--<TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" Text="[ NEW MIDP INFORMATION ]" FontWeight="Bold" FontSize="17" TextAlignment="Center" />
@@ -106,8 +107,8 @@
         <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="5">
             <TextBlock Text="[ NEW MIDP INFORMATION ]" FontSize="16" FontWeight="Bold"  TextAlignment="Center"/>
             <TextBlock  FontSize="10" FontWeight="Thin" Foreground="DarkSlateBlue" TextAlignment="Center">
-            以下文本内容可缺省
-            <LineBreak/>
+            <!--以下文本内容可缺省
+            <LineBreak/>-->
             The following text boxes can be left blank.
             </TextBlock>
         </StackPanel>
@@ -116,8 +117,8 @@
         <StackPanel Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="5">
             <TextBlock Text="[ OLD MIDP INFORMATION ]" FontSize="16" FontWeight="Bold"  TextAlignment="Center"/>
             <TextBlock  FontSize="10" FontWeight="Thin" Foreground="DarkSlateBlue" TextAlignment="Center">
-            以下文本内容可缺省
-            <LineBreak/>
+            <!--以下文本内容可缺省
+            <LineBreak/>-->
             The following text boxes can be left blank.
             </TextBlock>
         </StackPanel>
@@ -165,11 +166,11 @@
         <Button  Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" Name="BtnGenerateNEWTable"  Height="60" Click="BtnGenerateNEWTable_Click" >
             <Button.Content>
                 <StackPanel>
-                    <TextBlock Text="生成新MIDP表格" FontSize="16" FontWeight="Bold"  TextAlignment="Center"/>
+                    <TextBlock Text="Save New MIDP Table" FontSize="16" FontWeight="Bold"  TextAlignment="Center"/>
                     <TextBlock  FontSize="10" FontWeight="Thin" Foreground="DarkSlateBlue" TextAlignment="Center">
-                        Generate a NEW MIDP table in standard format
+                        Based on the PDF files, generate a NEW MIDP 
                         <LineBreak/>
-                        Based on the PDF files
+                        table in standard format (.xlsx)
                     </TextBlock>
                 </StackPanel>
             </Button.Content>
@@ -178,11 +179,11 @@
         <Button  Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" Margin="5" Name="BtnGenerateOLDTable"  Height="60" Click="BtnGenerateOLDTable_Click" >
             <Button.Content>
                 <StackPanel>
-                    <TextBlock Text="生成旧MIDP表格" FontSize="16" FontWeight="Bold"  TextAlignment="Center"/>
+                    <TextBlock Text="Save Old MIDP Table" FontSize="16" FontWeight="Bold"  TextAlignment="Center"/>
                     <TextBlock  FontSize="10" FontWeight="Thin" Foreground="DarkSlateBlue" TextAlignment="Center">
-                        Generate a OLD MIDP table in standard format
+                        Based on the PDF files, generate a OLD MIDP
                         <LineBreak/>
-                        Based on the PDF files
+                        table in standard format (.xlsx)
                     </TextBlock>
                 </StackPanel>
             </Button.Content>

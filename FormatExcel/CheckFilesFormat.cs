@@ -54,7 +54,7 @@ namespace FormatExcel
                 {
                     issueCount++;
                     //利用辅助方法 UpdateIssueList 更新 FileIssue 列表 （该方法为static）
-                    UpdateIssueList(issues, fileNameWithoutExtension, "文件长度或分隔_错误，请修改后重新检查");
+                    UpdateIssueList(issues, fileNameWithoutExtension, "File length or delimiter error. Please modify and recheck.");
 
                 }
 
@@ -75,7 +75,7 @@ namespace FormatExcel
                     if ((assetCode.Length != 5) || (elementNum.Length != 6) || (version.Length != 3))
                     {
                         issueCount++;
-                        UpdateIssueList(issues, fileNameWithoutExtension, "数字或版本部分长度错误");
+                        UpdateIssueList(issues, fileNameWithoutExtension, "Number or version section length error.");
                     }
                     // 错误情况3：构件编号不符合规范
                     // 00103_CHE_VL1_L02_SHD_HC_002150_R03_V1-2HC1500   2HC1500  15 150厚的板 序号0  对应002150  15 是厚度 0 是序号
@@ -96,18 +96,18 @@ namespace FormatExcel
                         if ((elementDetail.Split('-').ToList().Last().Length) != 5)
                         {
                             issueCount++;
-                            UpdateIssueList(issues, fileNameWithoutExtension, "最后编号长度错误");
+                            UpdateIssueList(issues, fileNameWithoutExtension, "Final numbering length error.");
 
                         }
                         else if (ele_Num != numFrontPart)
                         {
                             issueCount++;
-                            UpdateIssueList(issues, fileNameWithoutExtension, "构件编号前后不一致");
+                            UpdateIssueList(issues, fileNameWithoutExtension, "Inconsistent component numbering.");
                         }
                         else if (ele_Level != elementNum[3].ToString())
                         {
                             issueCount++;
-                            UpdateIssueList(issues, fileNameWithoutExtension, "前后标高对应错误");
+                            UpdateIssueList(issues, fileNameWithoutExtension, "Elevation mismatch.");
                         }
                         else
                         {
@@ -123,13 +123,13 @@ namespace FormatExcel
                         if ((elementDetail.Split('-').ToList().Last().Length) != 4)
                         {
                             issueCount++;
-                            UpdateIssueList(issues, fileNameWithoutExtension, "最后编号长度错误");
+                            UpdateIssueList(issues, fileNameWithoutExtension, "Final numbering length error.");
 
                         }
                         else if (ele_Num != numFrontPart)
                         {
                             issueCount++;
-                            UpdateIssueList(issues, fileNameWithoutExtension, "构件编号前后不一致");
+                            UpdateIssueList(issues, fileNameWithoutExtension, "Inconsistent component numbering.");
                         }
                         else
                         {
@@ -170,7 +170,7 @@ namespace FormatExcel
                                 if (ele_Num != seqFour)
                                 {
                                     issueCount++;
-                                    UpdateIssueList(issues, fileNameWithoutExtension, "构件编号前后不对应");
+                                    UpdateIssueList(issues, fileNameWithoutExtension, "Inconsistent component numbering.");
                                 }
                             }
                             else
@@ -183,7 +183,7 @@ namespace FormatExcel
                                 if (seqMark != lastPart)
                                 {
                                     issueCount++;
-                                    UpdateIssueList(issues, fileNameWithoutExtension, "构件编号前后不对应");
+                                    UpdateIssueList(issues, fileNameWithoutExtension, "Inconsistent component numbering.");
                                 }
 
                             }
@@ -192,7 +192,7 @@ namespace FormatExcel
                         else
                         {
                             issueCount++;
-                            UpdateIssueList(issues, fileNameWithoutExtension, "最后编号长度错误");
+                            UpdateIssueList(issues, fileNameWithoutExtension, "Final numbering length error.");
                         }
 
                     }
