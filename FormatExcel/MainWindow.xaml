@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FormatExcel"
         mc:Ignorable="d"
-        Title="Standardized MIDP table" Height="530" Width="700">
+        Title="Standardized MIDP Table" Height="530" Width="700">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

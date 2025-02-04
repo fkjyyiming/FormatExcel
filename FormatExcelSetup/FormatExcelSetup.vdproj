@@ -4,9 +4,9 @@
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
 "ProjectName" = "8:FormatMIDPSetup"
-"LanguageId" = "3:2052"
-"CodePage" = "3:936"
-"UILanguageId" = "3:2052"
+"LanguageId" = "3:1033"
+"CodePage" = "3:1252"
+"UILanguageId" = "3:1033"
 "SccProjectName" = "8:"
 "SccLocalPath" = "8:"
 "SccAuxPath" = "8:"
@@ -502,12 +502,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3B06D848C4FC6DA47C045E35FC51EADF"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_8FAA5C2DA9924C0EA6A68560FE8109FC"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -661,6 +655,12 @@
         "OwnerKey" = "8:_4BC30AF2990B66DFE26FB9B4F8C3B487"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3B06D848C4FC6DA47C045E35FC51EADF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -679,6 +679,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -695,6 +703,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -1774,7 +1798,7 @@
         }
         "MsiBootstrapper"
         {
-        "LangId" = "3:2052"
+        "LangId" = "3:1033"
         "RequiresElevation" = "11:FALSE"
         }
         "Product"
@@ -1782,7 +1806,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:FormatMIDPSetup"
         "ProductCode" = "8:{8A6DE48B-EC36-4C11-9F77-6CBBBAD2B61F}"
-        "PackageCode" = "8:{6392CCE4-0CBA-4505-BF91-F52A62CEE420}"
+        "PackageCode" = "8:{FCEA8DC1-3519-44D5-A917-E4F7B13F06AD}"
         "UpgradeCode" = "8:{A2621000-0EBB-4382-AC0F-6A0B13B2B82E}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
