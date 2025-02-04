@@ -30,3 +30,4 @@ CAD 和 PDF文件夹内的主要文件，应当是除了后缀名后完全一致
 
 # 3 增加英文版
 为方便外籍使用，在分支中增加纯英文版本
+![0500577baf36379e2e1aef17ea2def9](https://github.com/user-attachments/assets/00300a70-7788-4f97-a553-84dfc7694978)
