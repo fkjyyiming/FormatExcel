@@ -49,7 +49,7 @@ namespace FormatExcel
 
 
 
-                // 错误情况1: 文件被_分割后的部分数量不等于8
+                // 错误情况0: 文件被_分割后的部分数量不等于8
                 if (parts.Length != 9)
                 {
                     issueCount++;
@@ -71,6 +71,14 @@ namespace FormatExcel
                     var elementNum = parts[6];
                     var version = parts[7];
                     var elementDetail = parts[8];
+
+                    // 错误情况1:命名中包含空格
+                    if (trueName.Contains(" "))
+                    {
+                        issueCount++;
+                        UpdateIssueList(issues, fileNameWithoutExtension, "文件命名中包含空格");
+                    }
+
                     // 错误情况2：纯数字部分或版本号长度错误
                     if ((assetCode.Length != 5) || (elementNum.Length != 6) || (version.Length != 3))
                     {
