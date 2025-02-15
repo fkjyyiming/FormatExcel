@@ -216,30 +216,6 @@ namespace FormatExcel
 
 
 
-
-            ////对于长（HC、SS）、短（ST）之外的类型（最后一段的长度为5），直接将四位数字进行对比
-            //if (elementDetail.Length == 5)
-            //{
-            //    var numFront = elementNum;
-            //    var numFrontPart = numFront.Substring(numFront.Length - 1, 3);
-            //    //对于长（HC、SS）、短（ST）之外的类型，直接将四位数字进行对比
-            //    if (ele_Category != "HC" || ele_Category != "SS" || ele_Category != "ST")
-            //    {
-            //        if (ele_Num != numFrontPart)
-            //        {
-            //            issueCount++;
-            //            UpdateIssueList(issues, fileNameWithoutExtension, "构件编号前后不一致");
-            //        }
-            //        else
-            //        {
-            //            continue;
-            //        }
-
-            //    }
-            //}
-
-
-
             return (issueCount, issues);
         }
 
